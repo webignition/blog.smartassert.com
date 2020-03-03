@@ -1,0 +1,24 @@
+# Jekyll
+exclude: [README.md, _drafts, Gemfile, GemFile.lock, node_modules]
+permalink: /:title/
+url: https://blog.smartassert.com
+
+name: Smart Assert Blog
+description: >
+  Figuring out how to create a hassle-free browser test automation service; the story behind SmartAssert.com.
+
+markdown: kramdown
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+
+  -
+    scope:
+      path: "illustrations"
+    values:
+      layout: "illustration"
+      is_illustration: true
