@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - 2.4
+
+install:
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+  - nvm install node
+  - yarn install
+  - bundle install
+
+script:
+  - yarn run stylelint && bundle exec jekyll build

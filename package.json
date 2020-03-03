@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "normalize-scss": "^7.0.1",
+    "reset-css": "^5.0.1"
+  },
+  "devDependencies": {
+    "stylelint": "^13.2.0",
+    "stylelint-config-standard": "^20.0.0"
+  },
+  "scripts": {
+    "stylelint": "./node_modules/stylelint/bin/stylelint.js --config .stylelintrc _sass"
+  }
+}
