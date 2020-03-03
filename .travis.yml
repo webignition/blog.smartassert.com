@@ -2,10 +2,8 @@ language: ruby
 rvm:
   - 2.4
 
-node_js:
-  - "7"
-
 install:
+  - sudo apt-get install nodejs
   - node --version
   - yarn install
   - bundle install
