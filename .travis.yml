@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.4
 
+node_js:
+  - "7"
+
 install:
   - node --version
   - yarn install
