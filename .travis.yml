@@ -3,8 +3,8 @@ rvm:
   - 2.4
 
 install:
-  - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-  - sudo apt-get install -y nodejs node
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+  - nvm install node
   - node --version
   - nodejs --version
   - yarn install
