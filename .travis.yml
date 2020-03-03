@@ -3,6 +3,7 @@ rvm:
   - 2.4
 
 install:
+  - node --version
   - yarn install
   - bundle install
 
