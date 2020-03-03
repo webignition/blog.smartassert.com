@@ -5,9 +5,7 @@ rvm:
 install:
   - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
   - nvm install node
-  - nvm install nodejs
   - node --version
-  - nodejs --version
   - yarn install
   - bundle install
 
