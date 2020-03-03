@@ -16,6 +16,7 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_API_KEY
   target-branch: gh-pages
+  local_dir: _site
   verbose: true
   on:
     branch: master
