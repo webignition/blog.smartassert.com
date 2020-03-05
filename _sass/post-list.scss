@@ -1,0 +1,15 @@
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  .heading {
+    opacity: 1;
+  }
+
+  .continue-reading {
+    .fas {
+      margin-left: 0.5rem;
+    }
+  }
+}
