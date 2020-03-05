@@ -1,18 +1,53 @@
 // @see https://getbootstrap.com/docs/4.1/content/reboot/#native-font-stack
 $font-family-sans-serif:
   // Safari for OS X and iOS (San Francisco)
-        -apple-system,
-          // Chrome < 56 for OS X (San Francisco)
-        BlinkMacSystemFont,
-          // Windows
-        "Segoe UI",
-          // Android
-        "Roboto",
-          // Basic web fallback
-        "Helvetica Neue", Arial, sans-serif,
-          // Emoji fonts
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+  -apple-system,
+  // Chrome < 56 for OS X (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Android
+  "Roboto",
+  // Basic web fallback
+  "Helvetica Neue", Arial, sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+//body {
+//  font-family: $font-family-sans-serif;
+//}
 
 body {
   font-family: $font-family-sans-serif;
+  font-size: 1rem;
+  color: #212529;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
 }
