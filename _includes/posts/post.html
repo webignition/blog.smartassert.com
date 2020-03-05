@@ -3,16 +3,15 @@
     {% assign content_item = post %}
 {% endif %}
 
-{% assign heading_element = 'h1' %}
+{% assign heading_template = '<h1 class="heading">%title%</h1>' %}
+
 {% if page.is_index %}
-    {% assign heading_element = 'h2' %}
+    {% assign heading_template = '<a href="%url%"><h2 class="heading">%title%</h2></a>' %}
 {% endif %}
 
-{% assign heading_template = '<a href="%url%"><%element% class="heading">%title%</%element%></a>' %}
 
 <article class="post">
     {{ heading_template |
-        replace: '%element%', heading_element |
         replace: '%url%', content_item.url |
         replace: '%title%', content_item.title
     }}
