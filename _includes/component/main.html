@@ -1,5 +1,7 @@
 <main>
-    <p>
-        Main content.
-    </p>
+    {% if page.is_index %}
+        {% include posts/latest.html display_post_meta_byline=true %}
+    {% else %}
+        {% include posts/post.html display_post_meta_byline=true %}
+    {% endif %}
 </main>

@@ -7,6 +7,8 @@ title: Smart Assert Blog
 description: >
   Figuring out how to create a hassle-free browser test automation service; the story behind SmartAssert.com.
 
+latest_posts_length: 5
+
 markdown: kramdown
 
 defaults:

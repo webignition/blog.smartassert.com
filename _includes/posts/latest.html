@@ -1,0 +1,12 @@
+<ul class="post-list">
+    {% for post in site.posts offset: 0 limit: site.latest_posts_length %}
+    {% assign is_last_post = forloop.last %}
+
+    <li>
+        {% include posts/post.html display_post_meta_byline=include.display_post_meta_byline %}
+    </li>
+
+    {% endfor %}
+</ul>
+
+
