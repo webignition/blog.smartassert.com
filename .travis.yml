@@ -20,3 +20,9 @@ deploy:
   verbose: true
   on:
     branch: master
+
+cache:
+  bundler: true
+  yarn: true
+  directories:
+    - /home/travis/.rvm/
