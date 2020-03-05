@@ -1,0 +1,32 @@
+{% assign content_item = page %}
+{% if post %}
+    {% assign content_item = post %}
+{% endif %}
+
+{% assign heading_element = 'h1' %}
+{% if page.is_index %}
+    {% assign heading_element = 'h2' %}
+{% endif %}
+
+{% assign heading_template = '<a href="%url%"><%element% class="heading">%title%</%element%></a>' %}
+
+<article class="post">
+    {{ heading_template |
+        replace: '%element%', heading_element |
+        replace: '%url%', content_item.url |
+        replace: '%title%', content_item.title
+    }}
+
+    {% include posts/post-meta.html
+        authors=site.data.authors
+        author=content_item.author
+        display_post_meta_byline=include.display_post_meta_byline
+    %}
+
+    {% if page.is_index %}
+        {{ content_item.excerpt }}
+        <a href="{{ content_item.url }}" class="btn">Continue reading</a>
+    {% else %}
+        {{ content_item }}
+    {% endif %}
+</article>
