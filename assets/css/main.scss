@@ -1,8 +1,10 @@
 ---
 ---
 
-@import "../node_modules/normalize-scss/sass/normalize/import-now";
-@import "../node_modules/reset-css/sass/reset";
-@import "typography";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
 @import "layout";
 @import "header";
