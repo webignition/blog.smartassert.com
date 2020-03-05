@@ -10,7 +10,14 @@
 @import "header";
 @import "content";
 @import "post";
+@import "post-list";
 
 .fas {
   vertical-align: middle;
+}
+
+a {
+  &.fas {
+    text-decoration: none;
+  }
 }

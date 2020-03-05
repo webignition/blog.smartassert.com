@@ -6,7 +6,7 @@
 {% assign heading_template = '<h1 class="heading">%title%</h1>' %}
 
 {% if page.is_index %}
-    {% assign heading_template = '<a href="%url%"><h2 class="heading">%title%</h2></a>' %}
+    {% assign heading_template = '<a href="%url%"><h2 class="heading h1">%title%</h2></a>' %}
 {% endif %}
 
 
@@ -24,7 +24,7 @@
 
     {% if page.is_index %}
         {{ content_item.excerpt }}
-        <a href="{{ content_item.url }}" class="btn">Continue reading</a>
+        <a href="{{ content_item.url }}" class="continue-reading">Continue reading<i class="fas fa-caret-right"></i></a>
     {% else %}
         {{ content_item }}
     {% endif %}
