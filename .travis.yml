@@ -24,5 +24,3 @@ deploy:
 cache:
   bundler: true
   yarn: true
-  directories:
-    - /home/travis/.rvm/
