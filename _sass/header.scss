@@ -1,0 +1,46 @@
+header {
+  $logo-size: 48;
+
+  .logo {
+    $logo-border-width: $logo-size / 10;
+
+    display: inline-block;
+    position: relative;
+    border: #{$logo-border-width}px solid #00c851;
+    border-radius: 50%;
+    width: #{$logo-size}px;
+    height: #{$logo-size}px;
+    vertical-align: middle;
+
+    &::before {
+      $size: $logo-size;
+      $offset: $size / 2;
+      $left-additional-offset: $logo-border-width * -1;
+      $left-offset: $offset + $left-additional-offset;
+
+      $left-offset-px: #{$left-offset}px;
+      $top-offset-px: #{$offset}px;
+
+      position: absolute;
+      content: "✓";
+      color: #00c851;
+      display: block;
+      font-size: #{$size}px;
+      left: calc(50% - #{$left-offset-px});
+      top: calc(50% - #{$top-offset-px});
+    }
+  }
+
+  .brand {
+    p {
+      display: inline-block;
+      font-size: 2rem;
+      opacity: 0.7;
+      margin: 0 0 0 0.8rem;
+      vertical-align: middle;
+    }
+  }
+
+  padding: 1rem;
+  border-bottom: 1px solid #dadada;
+}
