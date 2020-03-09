@@ -6,4 +6,39 @@ body {
   min-height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  margin: 0 auto;
+
+  // Page max widths per media size
+  @each $media-size, $breakpoint in $grid-breakpoints {
+    @if map-has-key($container-max-widths, $media-size) {
+      @media (min-width: #{$breakpoint}) {
+        max-width: map-get($container-max-widths, $media-size);
+      }
+    }
+  }
+
+  // Introduce sidebar for lg and up
+  @media (min-width: map-get($grid-breakpoints, "lg")) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "header   header"
+      "content  ."
+      "footer   footer";
+  }
+}
+
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: content;
+}
+
+footer {
+  grid-area: footer;
 }
