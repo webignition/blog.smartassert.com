@@ -71,7 +71,7 @@ body {
             display: grid;
             grid-template-columns: 2fr 1fr;
             grid-template-areas: "content sidebar";
-            grid-gap: 1rem;
+            grid-gap: 2rem;
 
             .content {
               grid-area: content;
