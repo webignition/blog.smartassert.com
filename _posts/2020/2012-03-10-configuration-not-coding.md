@@ -6,18 +6,18 @@ excerpt_separator: <!--more-->
 
 ## No Programming Needed 
 
+Given the right automation system you don't need to write code to define your tests, you instead need to configure 
+the system to test as needed.
+
+<!--more-->
+
 You don't program your TV to record your favourite shows and you don't program your heating system. You might say that
 you do but you don't. In both cases you use a specialist system already created for a specific purpose and configure 
 it as needed.
 
-Given the right automation system you don't need to write code to define your tests, you instead need to configure 
-the system to test as needed.
-
 From the experiences of people learning to code in order to create automation tests, I am creating a plain-English 
 configuration language to define tests and a specialist automation system that understands this language and runs
 your tests.
-
-<!--more-->
 
 ## People Can't Code (and that is ok)
 
