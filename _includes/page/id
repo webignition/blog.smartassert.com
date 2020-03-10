@@ -1,9 +1,5 @@
-{%- if page.is_index -%}
-page-index
-{%- else -%}
 {%- if page.is_archive -%}
 page-archive
 {%- else -%}
 page-{{ page.url | replace_first:'/','' | replace:'/', '-' | replace:'.html', '' }}
-{%- endif -%}
 {%- endif -%}

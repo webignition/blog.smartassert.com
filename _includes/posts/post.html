@@ -1,31 +1,20 @@
-{% assign content_item = page %}
-{% if post %}
-    {% assign content_item = post %}
-{% endif %}
-
-{% assign heading_template = '<h1 class="heading">%title%</h1>' %}
-
-{% if page.is_index %}
-    {% assign heading_template = '<a href="%url%"><h2 class="heading h1">%title%</h2></a>' %}
-{% endif %}
-
-
 <article class="post">
-    {{ heading_template |
-        replace: '%url%', content_item.url |
-        replace: '%title%', content_item.title
+    {{ include.heading_template |
+        replace: '%url%', include.content_item.url |
+        replace: '%title%', include.content_item.title
     }}
 
     {% include posts/post-meta.html
         authors=site.data.authors
-        author=content_item.author
+        author=include.content_item.author
+        date=include.content_item.date
         display_post_meta_byline=include.display_post_meta_byline
     %}
 
-    {% if page.is_index %}
-        {{ content_item.excerpt }}
-        <a href="{{ content_item.url }}" class="continue-reading">Continue reading<i class="fas fa-caret-right"></i></a>
+    {% if include.excerpt_only %}
+        {{ include.content_item.excerpt }}
+        <a href="{{ include.content_item.url }}" class="continue-reading">Continue reading<i class="fas fa-caret-right"></i></a>
     {% else %}
-        {{ content_item }}
+        {{ include.content_item }}
     {% endif %}
 </article>

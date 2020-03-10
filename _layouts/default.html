@@ -3,7 +3,13 @@
     {% include component/head.html %}
     <body class="{% include page/id %}">
         {% include component/header.html %}
-        {% include component/main.html %}
+        <main>
+            {% include posts/post.html
+                heading_template='<h1 class="heading">%title%</h1>'
+                content_item=page
+                display_post_meta_byline=true
+            %}
+        </main>
         {% include component/footer.html %}
     </body>
 </html>
