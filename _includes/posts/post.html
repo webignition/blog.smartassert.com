@@ -1,18 +1,25 @@
-{{ include.heading_template |
-    replace: '%url%', include.content_item.url |
-    replace: '%title%', include.content_item.title
-}}
+<div class="header">
+    {{ include.heading_template |
+        replace: '%url%', include.content_item.url |
+        replace: '%title%', include.content_item.title
+    }}
 
-{% include posts/post-meta.html
-    authors=site.data.authors
-    author=include.content_item.author
-    date=include.content_item.date
-    display_post_meta_byline=include.display_post_meta_byline
-%}
+    {% include posts/post-meta.html
+        authors=site.data.authors
+        author=include.content_item.author
+        date=include.content_item.date
+        display_post_meta_byline=include.display_post_meta_byline
+    %}
+</div>
 
 {% if include.excerpt_only %}
     {{ include.content_item.excerpt }}
     <a href="{{ include.content_item.url }}" class="continue-reading">Continue reading<i class="fas fa-caret-right"></i></a>
 {% else %}
-    {{ include.content_item }}
+    <div class="body">
+        <div class="content">
+            {{ include.content_item }}
+        </div>
+        <aside></aside>
+    </div>
 {% endif %}

@@ -20,32 +20,65 @@ body {
       }
     }
   }
-}
 
-header {
-  grid-area: header;
-}
+  header {
+    grid-area: header;
+  }
 
-main {
-  grid-area: main;
+  main {
+    grid-area: main;
+  }
 
-  // Introduce sidebar for lg and up
-  @media (min-width: map-get($grid-breakpoints, "lg")) {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas: "content   sidebar";
-    grid-gap: 1rem;
+  footer {
+    grid-area: footer;
+  }
 
-    .content {
-      grid-area: content;
-    }
+  &.index {
+    main {
+      @media (min-width: map-get($grid-breakpoints, "lg")) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: "content sidebar";
+        grid-gap: 1rem;
 
-    aside {
-      grid-area: sidebar;
+        .content {
+          grid-area: content;
+        }
+
+        aside {
+          grid-area: sidebar;
+        }
+      }
     }
   }
-}
 
-footer {
-  grid-area: footer;
+  &.post {
+    main {
+      article {
+        @media (min-width: map-get($grid-breakpoints, "lg")) {
+          display: grid;
+          grid-template-rows: auto 1fr;
+          grid-template-areas:
+            "header"
+            "body";
+
+          .header {
+            grid-area: header;
+          }
+
+          .body {
+            grid-area: body;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-areas: "content sidebar";
+            grid-gap: 1rem;
+
+            .content {
+              grid-area: content;
+            }
+          }
+        }
+      }
+    }
+  }
 }
