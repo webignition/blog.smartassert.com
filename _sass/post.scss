@@ -10,25 +10,39 @@
   }
 
   .toc {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    display: none;
+
+    @media (min-width: map-get($grid-breakpoints, "lg")) {
+      display: block;
+    }
+  }
+
+  .contents {
+    @media (min-width: map-get($grid-breakpoints, "lg")) {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
   }
 
   .toc-item {
-    border-left: 2px solid $gray-400;
-    background-color: $gray-100;
-    margin: 0.5rem 0;
-    padding-left: 0.5rem;
+    @media (min-width: map-get($grid-breakpoints, "lg")) {
+      border-left: 2px solid $gray-400;
+      background-color: $gray-100;
+      margin: 0.5rem 0;
+      padding-left: 0.5rem;
 
-    &:hover {
-      border-color: $gray-500;
-      background-color: $gray-200;
+      &:hover {
+        border-color: $gray-500;
+        background-color: $gray-200;
+      }
     }
   }
 
   .toc-anchor {
-    padding: 0.25rem 0;
-    display: block;
+    @media (min-width: map-get($grid-breakpoints, "lg")) {
+      padding: 0.25rem 0;
+      display: block;
+    }
   }
 }
