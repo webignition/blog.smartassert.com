@@ -4,12 +4,14 @@
     {% assign author_template = '<span class="author">%author%</span>' %}
 
     {% if include.authors[include.author].url %}
-    {% assign author_template = '<a class="author" href="%url%">%author%</a>' | replace: '%url%', include.authors[include.author].url %}
+        {% assign author_template = '<a class="author" href="%url%">%author%</a>' |
+            replace: '%url%', include.authors[include.author].url
+        %}
     {% endif %}
 {% endif %}
 
 <div class="meta">
-    <time datetime="{{ content_item.date | date: '%Y-%m-%d' }}">{{ content_item.date | date: "%B %e, %Y" }}</time>
+    <time datetime="{{ include.date | date: '%Y-%m-%d' }}">{{ include.date | date: "%B %e, %Y" }}</time>
 
     {% if display_author %}
         by {{ author_template | replace: '%author%', include.authors[include.author].name }}

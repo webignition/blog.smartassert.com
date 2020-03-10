@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    {% include component/head.html %}
+    <body class="index">
+        {% include component/header.html %}
+        <main>
+            <ul class="post-list">
+                {% for post in site.posts offset: 0 limit: site.latest_posts_length %}
+                {% assign is_last_post = forloop.last %}
+
+                <li>
+                    {% include posts/post.html
+                        heading_template='<a href="%url%"><h2 class="heading h1">%title%</h2></a>'
+                        content_item=post
+                        display_post_meta_byline=true
+                        excerpt_only=true
+                    %}
+                </li>
+
+                {% endfor %}
+            </ul>
+        </main>
+        {% include component/footer.html %}
+    </body>
+</html>
