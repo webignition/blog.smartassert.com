@@ -9,7 +9,7 @@ install:
   - bundle install
 
 script:
-  - yarn run stylelint && bundle exec jekyll build
+  - yarn run stylelint && ./build.sh
 
 deploy:
   provider: pages
