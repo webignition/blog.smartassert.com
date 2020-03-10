@@ -4,11 +4,14 @@
     <body class="{% include page/id %}">
         {% include component/header.html %}
         <main>
-            {% include posts/post.html
-                heading_template='<h1 class="heading">%title%</h1>'
-                content_item=page
-                display_post_meta_byline=true
-            %}
+            <article class="content post">
+                {% include posts/post.html
+                    heading_template='<h1 class="heading">%title%</h1>'
+                    content_item=page
+                    display_post_meta_byline=true
+                %}
+            </article>
+            <aside></aside>
         </main>
         {% include component/footer.html %}
     </body>
