@@ -8,7 +8,7 @@ body {
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header"
-    "content"
+    "main"
     "footer";
   margin: 0 auto;
 
@@ -20,15 +20,6 @@ body {
       }
     }
   }
-
-  // Introduce sidebar for lg and up
-  @media (min-width: map-get($grid-breakpoints, "lg")) {
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas:
-      "header   header"
-      "content  ."
-      "footer   footer";
-  }
 }
 
 header {
@@ -36,7 +27,23 @@ header {
 }
 
 main {
-  grid-area: content;
+  grid-area: main;
+
+  // Introduce sidebar for lg and up
+  @media (min-width: map-get($grid-breakpoints, "lg")) {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "content   sidebar";
+    grid-gap: 1rem;
+
+    .content {
+      grid-area: content;
+    }
+
+    aside {
+      grid-area: sidebar;
+    }
+  }
 }
 
 footer {
