@@ -5,6 +5,21 @@
     opacity: 0.7;
   }
 
+  ol,
+  ul {
+    margin-bottom: 1rem;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  ol {
+    ol {
+      padding-left: 1rem;
+    }
+  }
+
   .heading {
     margin: 2rem 0 1rem;
   }
@@ -81,11 +96,5 @@
     opacity: 0.8;
     margin: 1rem 0;
     padding-left: 0.5rem;
-  }
-
-  ol {
-    ol {
-      padding-left: 1rem;
-    }
   }
 }
