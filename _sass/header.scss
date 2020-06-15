@@ -1,6 +1,20 @@
 header {
   padding: 1rem;
   border-bottom: 1px solid #dadada;
+  position: relative;
+  color: #dadada;
+
+  &::before {
+    content: '';
+    background-color: #212529;
+    height: 100%;
+    z-index: -1;
+    width: 200vw;
+    display: block;
+    position: absolute;
+    left: -100vw;
+    top: 0;
+  }
 
   p {
     opacity: 0.7;
@@ -42,7 +56,7 @@ header {
   .brand {
     display: block;
     margin-bottom: 1rem;
-    color: #212529;
+    color: #00c851;
 
     p {
       display: inline-block;
