@@ -1,11 +1,15 @@
 article {
   &.post {
     h2 {
-      margin-top: 2rem;
+      margin-top: 3rem;
 
       &:first-of-type {
         margin-top: 0;
       }
+    }
+
+    h3 {
+      margin-top: 2rem;
     }
   }
 }
