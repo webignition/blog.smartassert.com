@@ -4,6 +4,10 @@ header {
   position: relative;
   color: #dadada;
 
+  @media (min-width: map-get($grid-breakpoints, "md")) {
+    padding: 2rem 1rem;
+  }
+
   &::before {
     content: '';
     background-color: #212529;
