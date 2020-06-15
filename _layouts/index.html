@@ -8,7 +8,7 @@
                 {% for post in site.posts offset: 0 limit: site.latest_posts_length %}
                 {% assign is_last_post = forloop.last %}
 
-                <li class="post">
+                <li class="post-list-post">
                     {% include posts/post.html
                         heading_template='<a href="%url%"><h2 class="heading h1">%title%</h2></a>'
                         content_item=post
