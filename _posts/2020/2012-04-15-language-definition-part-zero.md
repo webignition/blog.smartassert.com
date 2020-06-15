@@ -61,18 +61,7 @@ If we visit https://google.com/ we might want to then verify that this has occur
 Given what we now know of a test and what a test consists of (a sequence of steps, with each step performing an optional
 sequence of actions and executing a series of assertions), we can now write out a test in plain English.
 
-Open up https://google.com in Chrome.
-
-* Verify that the page is open
-    1. Assert that the page title is "Google"
-    2. Assert that the page url is "https://google.com"
-    
-* Search for "Example"
-    1. Enter "Example" into the search box
-    2. Click the "Google Search" button
-    3. Assert that the page title is "Example - Google Search"
-    4. Assert that the page url contains "https://www.google.com/search"
-    5. Assert that the page url contains "q=example.com"
+{% include posts/partial/open-search-google-plain-english.md %}
 
 If you understand English (I'm really guessing you do at this point), you can read, understand and carry out the test.
 
