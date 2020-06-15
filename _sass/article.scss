@@ -1,4 +1,10 @@
 article {
+  .header {
+    @media (min-width: map-get($grid-breakpoints, "md")) {
+      padding: 2rem 0;
+    }
+  }
+
   &.post {
     h2 {
       margin-top: 3rem;
