@@ -62,6 +62,8 @@
 
     @media (min-width: map-get($grid-breakpoints, "lg")) {
       display: block;
+      position: sticky;
+      top: 2rem;
     }
 
     ul,
