@@ -12,11 +12,8 @@ body {
     "main"
     "footer";
 
-  header,
-  main,
-  footer {
+  .wrapper {
     margin: 0 auto;
-    width: 100%;
 
     // Page max widths per media size
     @each $media-size, $breakpoint in $grid-breakpoints {
@@ -25,6 +22,16 @@ body {
           max-width: map-get($container-max-widths, $media-size);
         }
       }
+    }
+  }
+
+  .guttered-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @media (min-width: map-get($grid-breakpoints, "sm")) {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 

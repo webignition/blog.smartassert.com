@@ -3,8 +3,8 @@
     {% include component/head.html %}
     <body class="index">
         {% include component/header.html %}
-        <main>
-            <ul class="content post-list">
+        <main class="wrapper">
+            <ul class="content post-list guttered-content">
                 {% for post in site.posts offset: 0 limit: site.latest_posts_length %}
                 {% assign is_last_post = forloop.last %}
 
