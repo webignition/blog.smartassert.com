@@ -5,11 +5,34 @@
         {% include component/header.html %}
         <main>
             <article class="content post">
-                {% include posts/post.html
-                    heading_template='<h1 class="heading">%title%</h1>'
-                    content_item=page
-                    display_post_meta_byline=true
-                %}
+                <div class="header">
+                    <h1 class="heading">{{ page.title }}</h1>
+
+                    {% include posts/post-meta.html
+                        authors=site.data.authors
+                        author=page.author
+                        date=page.date
+                        display_post_meta_byline=true
+                    %}
+                </div>
+
+                <div class="body">
+                    <div class="content">
+                        {{ page }}
+                    </div>
+                    <aside>
+                        <div class="toc">
+                            <strong class="heading">Contents</strong>
+                            {% include toc.html
+                                html=content
+                                class="contents"
+                                item_class="toc-item"
+                                anchor_class="toc-anchor"
+                            %}
+                        </div>
+                    </aside>
+                </div>
+
             </article>
         </main>
         {% include component/footer.html %}

@@ -9,12 +9,16 @@
                 {% assign is_last_post = forloop.last %}
 
                 <li class="post-list-post">
-                    {% include posts/post.html
-                        heading_template='<a href="%url%"><h2 class="heading h1">%title%</h2></a>'
-                        content_item=post
+                    <a href="{{ post.url }}"><h2 class="heading h1">{{ post.title }}</h2></a>
+
+                    {% include posts/post-meta.html
+                        authors=site.data.authors
+                        author=post.author
+                        date=post.date
                         display_post_meta_byline=true
-                        excerpt_only=true
                     %}
+
+                    {% include posts/excerpt.html content_item=post %}
                 </li>
 
                 {% endfor %}
