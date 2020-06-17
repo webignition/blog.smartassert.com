@@ -5,19 +5,21 @@
         {% include component/header.html %}
         <main>
             <article class="content post">
-                <div class="header">
-                    <h1 class="heading">{{ page.title }}</h1>
+                <div class="header guttered-content">
+                    <div class="wrapper">
+                        <h1 class="heading">{{ page.title }}</h1>
 
-                    {% include posts/post-meta.html
-                        authors=site.data.authors
-                        author=page.author
-                        date=page.date
-                        display_post_meta_byline=true
-                    %}
+                        {% include posts/post-meta.html
+                            authors=site.data.authors
+                            author=page.author
+                            date=page.date
+                            display_post_meta_byline=true
+                        %}
+                    </div>
                 </div>
 
-                <div class="body">
-                    <div class="content">
+                <div class="body wrapper">
+                    <div class="content guttered-content">
                         {{ page }}
                     </div>
                     <aside>
