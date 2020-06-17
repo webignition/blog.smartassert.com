@@ -1,0 +1,13 @@
+{% assign excerpt = include.content_item.excerpt %}
+{% assign excerpt_items = excerpt | newline_to_br | split: "<br />" %}
+{% assign first_excerpt_item = excerpt_items | first %}
+
+{% if first_excerpt_item contains "</h2>" %}
+    {% for excerpt_item in excerpt_items offset:1 %}
+        {{ excerpt_item }}
+    {% endfor %}
+{% else %}
+    {{ excerpt }}
+{% endif %}
+
+<a href="{{ include.content_item.url }}" class="continue-reading">Continue reading<i class="fas fa-caret-right"></i></a>
