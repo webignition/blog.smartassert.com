@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script src="https://kit.fontawesome.com/3fe9462074.js" crossorigin="anonymous"></script>
+
+    <link href="https://blog.smartassert.com/feed.xml" rel="alternate" type="application/rss+xml" title="Smart Assert Blog Feed" />
+    <link rel="stylesheet" href="/assets/css/main.css?1599057143204107228">
+
+    <title>Language Definition Part 2: Doing Things One Way</title>
+</head>
+    <body class="post page-language-definition-part-two-">
+        <header role="banner" class="guttered-content">
+    <div class="wrapper">
+        <a class="brand h1" href="/">
+            <span class="logo"></span><p>Smart Assert Blog</p>
+        </a>
+        <p>
+            Creating a hassle-free browser test automation service; the
+            story behind SmartAssert.com.
+        </p>
+    </div>
+</header>
+        <main>
+            <article class="content post">
+                <div class="header guttered-content">
+                    <div class="wrapper">
+                        <h1 class="heading">Language Definition Part 2: Doing Things One Way</h1>
+
+                        
+
+
+
+<div class="meta">
+    <time datetime="2020-06-16">June 16, 2020</time>
+
+    
+        by <a class="author" href="https://github.com/webignition">Jon Cram</a>
+    
+</div>
+
+                    </div>
+                </div>
+
+                <div class="body wrapper">
+                    <div class="content guttered-content">
+                        <h2 id="doing-things-one-way">Doing Things One Way</h2>
+
+<p>We previously <a href="/language-definition-part-one/#actions-come-before-assertions">separated out actions and assertions</a>
+in test steps to make our plain-English readable test a little more precise. We will now add more precision to actions 
+and assertions.</p>
+
+<!--more-->
+
+<h2 id="more-than-one-way">More Than One Way</h2>
+
+<p>How can you describe the action of entering text into a search box?</p>
+
+<ul>
+  <li>Enter ‘Example’ into the search box</li>
+  <li>Fill the search box with ‘Example’</li>
+  <li>Type ‘Example’ into the search box</li>
+</ul>
+
+<p>How can you describe the action of clicking a button?</p>
+
+<ul>
+  <li>Click the “Google Search” button</li>
+  <li>Press the “Google Search” button</li>
+  <li>Tap the “Google Search” button</li>
+</ul>
+
+<p>How can you describe checking the value of a form field?</p>
+
+<ul>
+  <li>Form field is “expected value”</li>
+  <li>Form field equals “expected value”</li>
+</ul>
+
+<p>There are many correct ways of describing actions and assertions, all as equally valid as each other. Picking one verb 
+per type of action, and one verb per type of assertion operation, makes our statements as clear as they can be.</p>
+
+<h2 id="action-and-assertion-verbs">Action and Assertion Verbs</h2>
+
+<h3 id="actions">Actions</h3>
+
+<ul>
+  <li><strong>back</strong>: the browser ‘back’ feature</li>
+  <li><strong>forward</strong>: the browser ‘forward’ feature</li>
+  <li><strong>reload</strong>: reload the current page</li>
+  <li><strong>click</strong>: click/press/tap/select an element</li>
+  <li><strong>set</strong>: change the value of a form field</li>
+  <li><strong>submit</strong>: submit a form</li>
+  <li><strong>wait</strong>: stop for a little whilst and wait for things to happen</li>
+  <li><strong>wait-for</strong>: stop for a little while until an element is present on the page</li>
+</ul>
+
+<h3 id="assertions">Assertions</h3>
+
+<ul>
+  <li><strong>exists</strong>: is an element present?</li>
+  <li><strong>not-exists</strong>: is an element not present?</li>
+  <li><strong>is</strong>: equality (<em>Page title is “Google”</em>)</li>
+  <li><strong>is-not</strong>: non-equality (<em>Page title is-not “Google”</em>)</li>
+  <li><strong>includes</strong>: does an element/page component contain text? (<em>Page url includes “q=example”</em>)</li>
+  <li><strong>excludes</strong>: does an element/page component not contain text? (<em>Page url excludes “cheese”</em>)</li>
+  <li><strong>matches</strong>: does an element/page component match a regular expression? (<em>Page url matches “/^google.com\/search.</em>$/”*)</li>
+</ul>
+
+<p>These don’t cover every possible need but do cover most needs. Relatively modern browser actions such as dragging 
+elements around and dropping them on other elements are not covered, but those can come once we have the basics in
+place.</p>
+
+<p>Regarding <em>includes</em>: our example test used <em>contains</em> for asserting an element featured a known value. I’ve opted
+for <em>includes</em> as it better supports the negative of <em>excludes</em>.</p>
+
+<h2 id="updating-previous-plain-english-test">Updating Previous Plain English Test</h2>
+
+<p>We previously <a href="/language-definition-part-one/#actions-come-before-assertions">separated out actions and assertions</a>
+in our example test. Let’s update in again with our action and assertion verbs (in bold).</p>
+
+<blockquote>
+  <p>Open up https://google.com in Chrome.</p>
+
+  <ul>
+    <li>
+      <p>Verify that the page is open</p>
+
+      <p>Assertions</p>
+      <ul>
+        <li>Page title <strong>is</strong> “Google”</li>
+        <li>Page url <strong>is</strong> “https://google.com”</li>
+      </ul>
+    </li>
+    <li>
+      <p>Search for “Example”</p>
+
+      <p>Actions</p>
+      <ul>
+        <li><strong>set</strong> search box to “Example”</li>
+        <li><strong>click</strong> “Google Search” button</li>
+      </ul>
+
+      <p>Assertions</p>
+      <ul>
+        <li>Page title <strong>is</strong> “Example - Google Search”</li>
+        <li>Page url <strong>includes</strong> “https://www.google.com/search”</li>
+        <li>Page url <strong>includes</strong> “q=example”</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="precisely-identifying-page-components">Precisely Identifying Page Components</h2>
+
+<p>The instruction ‘set search box to “Example”’ makes sense to us when we’re aware of the context of being at the Google
+homepage. The Google homepage contains only one search box (actually just one input field when I last checked).</p>
+
+<p>It is possible to retain the same wording and have a computer understand what we mean. Well, it is possible for this
+exact example. For other examples it may not be possible. In cases where is it possible to unambiguously translate
+a rather loosely-worded instruction into a single operation that a computer can perform, we can’t be certain
+that what we end up doing is what the person who wrote the test wanted.</p>
+
+<p>Thankfully two standard means of identifying page elements exist. We can expand on that a little to make our brains 
+hurt a little less.</p>
+
+<p>The next article in this series will look at exactly that.</p>
+
+                    </div>
+                    <aside>
+                        <div class="toc">
+                            <strong class="heading">Contents</strong>
+                            <ul class="contents">
+  <li class="toc-item"><a href="#doing-things-one-way" class="toc-anchor">Doing Things One Way</a></li>
+  <li class="toc-item"><a href="#more-than-one-way" class="toc-anchor">More Than One Way</a></li>
+  <li class="toc-item"><a href="#action-and-assertion-verbs" class="toc-anchor">Action and Assertion Verbs</a>
+    <ul>
+      <li class="toc-item"><a href="#actions" class="toc-anchor">Actions</a></li>
+      <li class="toc-item"><a href="#assertions" class="toc-anchor">Assertions</a></li>
+    </ul>
+  </li>
+  <li class="toc-item"><a href="#updating-previous-plain-english-test" class="toc-anchor">Updating Previous Plain English Test</a></li>
+  <li class="toc-item"><a href="#precisely-identifying-page-components" class="toc-anchor">Precisely Identifying Page Components</a></li>
+</ul>
+
+                        </div>
+                    </aside>
+                </div>
+
+            </article>
+        </main>
+        <footer></footer>
+
+    </body>
+</html>

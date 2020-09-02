@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script src="https://kit.fontawesome.com/3fe9462074.js" crossorigin="anonymous"></script>
+
+    <link href="https://blog.smartassert.com/feed.xml" rel="alternate" type="application/rss+xml" title="Smart Assert Blog Feed" />
+    <link rel="stylesheet" href="/assets/css/main.css?1599057143204107228">
+
+    <title>Language Definition Part 0: Understanding Web Testing</title>
+</head>
+    <body class="post page-language-definition-part-zero-">
+        <header role="banner" class="guttered-content">
+    <div class="wrapper">
+        <a class="brand h1" href="/">
+            <span class="logo"></span><p>Smart Assert Blog</p>
+        </a>
+        <p>
+            Creating a hassle-free browser test automation service; the
+            story behind SmartAssert.com.
+        </p>
+    </div>
+</header>
+        <main>
+            <article class="content post">
+                <div class="header guttered-content">
+                    <div class="wrapper">
+                        <h1 class="heading">Language Definition Part 0: Understanding Web Testing</h1>
+
+                        
+
+
+
+<div class="meta">
+    <time datetime="2020-04-15">April 15, 2020</time>
+
+    
+        by <a class="author" href="https://github.com/webignition">Jon Cram</a>
+    
+</div>
+
+                    </div>
+                </div>
+
+                <div class="body wrapper">
+                    <div class="content guttered-content">
+                        <h2 id="understanding-what-we-are-modelling">Understanding What We Are Modelling</h2>
+
+<p>My aim is to define browser automation tests using a plain-English configuration language. Before I can start, we need 
+to look at what web testing is and what terminology is used, or can be used, to describe what goes on.</p>
+
+<!--more-->
+
+<h2 id="manual-web-testing-defined-in-as-few-words-as-possible">Manual Web Testing Defined in as Few Words as Possible</h2>
+
+<blockquote>
+  <p>Open a browser and visit a web page. Perhaps do some things with the web page. Examine the page for correctness.
+Perhaps do more things and again examine the page for correctness.</p>
+</blockquote>
+
+<p>As definitions go, it’s a bit casual but probably captures the essence of what is involved in testing a web page by
+hand. We have defined, albeit loosely, a test.</p>
+
+<h2 id="components-of-a-test">Components of a Test</h2>
+
+<p>A test consists of going to a web page, perhaps doing some stuff, and then checking that everything is as it should be. 
+Your test may repeat the <em>do some stuff</em>, <em>check that everything is as it should be</em> parts, each time doing different 
+stuff and checking different things.</p>
+
+<p>Let’s re-write our definition of a test in a more formal manner and start applying some terminology to the components of
+a test.</p>
+
+<ol>
+  <li>Open a given URL in a given browser</li>
+  <li>Perform a sequence of steps</li>
+</ol>
+
+<h3 id="steps">Steps</h3>
+
+<p>A step is one of the <em>do some stuff</em>, <em>check that everything is as it should be</em> parts. A test is made up of one or more
+steps.</p>
+
+<p>What makes up a step?</p>
+
+<ol>
+  <li>Optionally perform a sequence of <em>actions</em></li>
+  <li>Evaluate a series of <em>assertions</em></li>
+</ol>
+
+<h3 id="actions">Actions</h3>
+
+<p><em>Actions</em> are things that you can do within a browser to a web page, such as clicking links, entering text into forms
+and clicking buttons.</p>
+
+<p>This is by far the easiest part to understand.</p>
+
+<h3 id="assertions">Assertions</h3>
+
+<p><em>Assertions</em> are statements of fact that we want to demonstrate to be either correct or incorrect (true or false). For
+example, the statement may be “The browser title is ‘Google’”.</p>
+
+<p>If we visit https://google.com/ we might want to then verify that this has occurred by asserting that 
+“The browser title is ‘Google’” is true. If so, all is good. If not, we might have run into a bug.</p>
+
+<h2 id="a-simple-test-in-plain-english">A Simple Test in Plain English</h2>
+
+<p>Given what we now know of a test and what a test consists of (a sequence of steps, with each step performing an optional
+sequence of actions and executing a series of assertions), we can now write out a test in plain English.</p>
+
+<blockquote>
+  <p>Open up https://google.com in Chrome.</p>
+
+  <ul>
+    <li>Verify that the page is open
+      <ol>
+        <li>Assert that the page title is “Google”</li>
+        <li>Assert that the page url is “https://google.com”</li>
+      </ol>
+    </li>
+    <li>Search for “Example”
+      <ol>
+        <li>Enter “Example” into the search box</li>
+        <li>Click the “Google Search” button</li>
+        <li>Assert that the page title is “Example - Google Search”</li>
+        <li>Assert that the page url contains “https://www.google.com/search”</li>
+        <li>Assert that the page url contains “q=example”</li>
+      </ol>
+    </li>
+  </ul>
+</blockquote>
+
+<p>If you understand English (I’m really guessing you do at this point), you can read, understand and carry out the test.</p>
+
+<h2 id="getting-more-precise">Getting More Precise</h2>
+
+<p>What we have so far isn’t really suitable as our ideal plain-English configuration language.</p>
+
+<p>We can write a program that will understand the above test. And we can make sure that it understands all common and 
+uncommon variants (“Enter ‘Example’ into the search box” vs “Fill the search box with “Example” vs “Type ‘Example’ 
+into the search box”). We can do this and we can make it work.</p>
+
+<p>It’s not the computers we need to cater for, it’s us. Our configuration language, as with every single programming-style
+language, will be read far, far, far more often than it is written.</p>
+
+<p>Programming-style languages exist to make things easier for us. We write code to convey information to others. We need 
+to optimise understandability in our language through unambiguous and succinct wording.</p>
+
+<p>In subsequent articles, I’ll look at how we can precisely and unambiguously define actions and assertions and how we
+can then start to write out tests in our new configuration language.</p>
+
+                    </div>
+                    <aside>
+                        <div class="toc">
+                            <strong class="heading">Contents</strong>
+                            <ul class="contents">
+  <li class="toc-item"><a href="#understanding-what-we-are-modelling" class="toc-anchor">Understanding What We Are Modelling</a></li>
+  <li class="toc-item"><a href="#manual-web-testing-defined-in-as-few-words-as-possible" class="toc-anchor">Manual Web Testing Defined in as Few Words as Possible</a></li>
+  <li class="toc-item"><a href="#components-of-a-test" class="toc-anchor">Components of a Test</a>
+    <ul>
+      <li class="toc-item"><a href="#steps" class="toc-anchor">Steps</a></li>
+      <li class="toc-item"><a href="#actions" class="toc-anchor">Actions</a></li>
+      <li class="toc-item"><a href="#assertions" class="toc-anchor">Assertions</a></li>
+    </ul>
+  </li>
+  <li class="toc-item"><a href="#a-simple-test-in-plain-english" class="toc-anchor">A Simple Test in Plain English</a></li>
+  <li class="toc-item"><a href="#getting-more-precise" class="toc-anchor">Getting More Precise</a></li>
+</ul>
+
+                        </div>
+                    </aside>
+                </div>
+
+            </article>
+        </main>
+        <footer></footer>
+
+    </body>
+</html>

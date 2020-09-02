@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script src="https://kit.fontawesome.com/3fe9462074.js" crossorigin="anonymous"></script>
+
+    <link href="https://blog.smartassert.com/feed.xml" rel="alternate" type="application/rss+xml" title="Smart Assert Blog Feed" />
+    <link rel="stylesheet" href="/assets/css/main.css?1599057143204107228">
+
+    <title>Language Definition Part 3: Precisely Identifying Page Components</title>
+</head>
+    <body class="post page-language-definition-part-three-">
+        <header role="banner" class="guttered-content">
+    <div class="wrapper">
+        <a class="brand h1" href="/">
+            <span class="logo"></span><p>Smart Assert Blog</p>
+        </a>
+        <p>
+            Creating a hassle-free browser test automation service; the
+            story behind SmartAssert.com.
+        </p>
+    </div>
+</header>
+        <main>
+            <article class="content post">
+                <div class="header guttered-content">
+                    <div class="wrapper">
+                        <h1 class="heading">Language Definition Part 3: Precisely Identifying Page Components</h1>
+
+                        
+
+
+
+<div class="meta">
+    <time datetime="2020-06-17">June 17, 2020</time>
+
+    
+        by <a class="author" href="https://github.com/webignition">Jon Cram</a>
+    
+</div>
+
+                    </div>
+                </div>
+
+                <div class="body wrapper">
+                    <div class="content guttered-content">
+                        <h2 id="precisely-identifying-page-components-using-existing-standards">Precisely Identifying Page Components Using Existing Standards</h2>
+
+<p>The unambiguous identification of page elements is a solved problem. As with all good computing problems, two different
+groups of people solved the same problem in two different ways: <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a> 
+and <a href="https://en.wikipedia.org/wiki/XPath">XPath</a>. Let’s use both!</p>
+
+<!--more-->
+
+<h2 id="identifying-the-google-search-field">Identifying The Google Search Field</h2>
+
+<p>Our <a href="/language-definition-part-two/#updating-previous-plain-english-test">previous plain-English example test</a>
+features the instruction ‘set search box to “Example”’. This is a bit on the vague side for a computer to understand.</p>
+
+<p>Using the Chrome dev tools to inspect the search box we can see what the CSS selector and XPath expression
+is:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">#tsf &gt; div:nth-child(2) &gt; div.A8SBwf &gt; div.RNNXgb &gt; div &gt; div.a4bIc &gt; input</code></li>
+  <li><code class="language-plaintext highlighter-rouge">//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input</code></li>
+</ul>
+
+<p>Ignoring any concerns about making your eyes bleed, these expressions are exact and do just what we need with absolute
+precision.</p>
+
+<p>That said, our human brains can examine the DOM and can derive equivalents that are less painful:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.gLFyf.gsfi</code></li>
+  <li><code class="language-plaintext highlighter-rouge">//input[@type="text"]</code></li>
+</ul>
+
+<h2 id="using-css-selectors-and-xpath-expressions-in-actions-and-assertions">Using CSS Selectors and XPath Expressions in Actions and Assertions</h2>
+
+<p>We need to be able to drop CSS selectors and XPath expressions (from here onwards known as <em>identifiers</em>) into actions 
+and assertions in a way that:</p>
+
+<ul>
+  <li>allows us to tell where the identifier starts and stops (some form of encapsulation)</li>
+  <li>differentiates between identifiers and literal values</li>
+</ul>
+
+<p>Encapsulation with double quotes is very common. Let’s go with that.</p>
+
+<p>Differentiation between literal strings and references to things that might otherwise look like literal stings can be
+accomplished by prefixing a reference with something that is excluded for literals. The dollar sign is common in some
+programming languages as a variable name prefix so that sounds good.</p>
+
+<p>Set the value of an element:</p>
+
+<p><code class="language-plaintext highlighter-rouge">set $".gLFyf.gsfi" to "Example"</code></p>
+
+<p>Set the value of one element to the value of another element:</p>
+
+<p><code class="language-plaintext highlighter-rouge">set $".element1" to $".element2"</code></p>
+
+<p>Set the value of an element to the literal string <code class="language-plaintext highlighter-rouge">.element2</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">set $".element1" to ".element2"</code></p>
+
+<h2 id="using-css-based-element-references-plain-english-test">Using CSS-based Element References Plain English Test</h2>
+
+<p>We most recently <a href="/language-definition-part-two/#updating-previous-plain-english-test">used our action and assertion verbs</a> 
+in our example test. Let’s update in again with our CSS-based element references (in bold).</p>
+
+<blockquote>
+  <p>Open up https://google.com in Chrome.</p>
+
+  <ul>
+    <li>
+      <p>Verify that the page is open</p>
+
+      <p>Assertions</p>
+      <ul>
+        <li>Page title is "Google"</li>
+        <li>Page url is "https://google.com"</li>
+      </ul>
+    </li>
+    <li>
+      <p>Search for "Example"</p>
+
+      <p>Actions</p>
+      <ul>
+        <li>set <strong>$".gLFyf.gsfi"</strong> to "Example"</li>
+        <li>click <strong>$"input[value='Google Search']"</strong></li>
+      </ul>
+
+      <p>Assertions</p>
+      <ul>
+        <li>Page title is "Example - Google Search"</li>
+        <li>Page url includes "https://www.google.com/search"</li>
+        <li>Page url includes "q=example"</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="identifying-attributes">Identifying Attributes</h2>
+
+<p>We need a means of identifying attributes within our actions and assertions. XPath expressions allow for the targeting 
+of element attributes but CSS selectors do not. We need to address this.</p>
+
+<p>When accessing an object method or property, many programming languages opt for using a dot between the object and the 
+method or property. This common usage is good enough for me so let’s do the same.</p>
+
+<p>Want to set the Google search box to the same as it’s <code class="language-plaintext highlighter-rouge">maxlength</code> attribute?</p>
+
+<p><code class="language-plaintext highlighter-rouge">set $".gLFyf.gsfi" to $".gLFyf.gsfi".maxlength</code></p>
+
+<p>Want to assert the value of the search box <code class="language-plaintext highlighter-rouge">maxlength</code> attribute?</p>
+
+<p><code class="language-plaintext highlighter-rouge">$".gLFyf.gsfi".maxlength is "2048"</code></p>
+
+<p>Want to do the same using an XPath expression in place of the CSS selector?</p>
+
+<p><code class="language-plaintext highlighter-rouge">set $"//input[@type="text"]" to $"//input[@type="text"]".maxlength</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">$"//input[@type="text"]".maxlength is "2048"</code></p>
+
+<h2 id="identifying-an-element-within-a-collection">Identifying an Element Within a Collection</h2>
+
+<p>Let’s say you have a list of nine items. You need to target the fourth element. It has no unique properties other than 
+it comes after the third item and before the fifth.</p>
+
+<p>CSS offers a range of child-related <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">pseudo-classes</a>.
+If you’re creating some CSS for a web page that is what you would use because you have no other choice. Good luck.</p>
+
+<p>XPath is slightly less complex in this regard and lets you append an index to the end of an expression. Unless perhaps
+you’re using a broad expression that starts with <code class="language-plaintext highlighter-rouge">//</code> in which case you should wrap the non-index part of the expression
+in brackets.</p>
+
+<p>What if we want to target a collection of elements with a straightforward CSS selector or XPath expression and then
+just pick out the fourth one?</p>
+
+<p>An unambiguous way of doing so that doesn’t conflict with existing CSS or XPath syntax is to use an ordinal position 
+prefixed with a colon.</p>
+
+<p>CSS-based example:</p>
+
+<p><code class="language-plaintext highlighter-rouge">$"ul li":4</code></p>
+
+<p>XPath-based example:</p>
+
+<p><code class="language-plaintext highlighter-rouge">$"//ul/li":4</code></p>
+
+<p>We also need some means of accessing the last item in a collection since we may well not know the ordinal position:</p>
+
+<p><code class="language-plaintext highlighter-rouge">$"ul li":last</code></p>
+
+<p>Since we have the special-case position of <code class="language-plaintext highlighter-rouge">:last</code>, we should also support <code class="language-plaintext highlighter-rouge">:first</code>, a synonym for <code class="language-plaintext highlighter-rouge">:1</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">$"ul li":first</code></p>
+
+<h2 id="identifying-elements-within-elements">Identifying Elements Within Elements</h2>
+
+<p>Both CSS selectors and XPath expressions allow some form of targeting an element that is within another element.</p>
+
+<p>I can count on the toes of a fish the number of times I have successfully targeted on my first attempt an element that 
+is the child of a parent and where the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator">descendant combinator</a> 
+is not what is needed.</p>
+
+<p>Element hierarchies are somewhat easier to represent using XPath expressions but not ideal. <code class="language-plaintext highlighter-rouge">//parent/direct-child</code> looks 
+identical to <code class="language-plaintext highlighter-rouge">//parent//direct-child</code> when you’re trying to spot a bug. Foot-guns abound for the sleepy or stressed amongst us.</p>
+
+<p>You may be able to easily target a containing element. You may be able to easily target an element within the scope of
+a containing element. You might not so easily be able to do so in one go.</p>
+
+<p>Simple example. Target a child within a parent:</p>
+
+<p><code class="language-plaintext highlighter-rouge">click $".parent" &gt;&gt; $".child"</code></p>
+
+<p>A child within a parent within a grandparent:</p>
+
+<p><code class="language-plaintext highlighter-rouge">click $".grandparent" &gt;&gt; $".parent" &gt;&gt; $".child"</code></p>
+
+<p>Crazy example. The third anchor within the second paragraph of the main element, mixing CSS and XPath:</p>
+
+<p><code class="language-plaintext highlighter-rouge">$"main" &gt;&gt; $"//p":2 &gt;&gt; $"a":3</code></p>
+
+<h2 id="referencing-page-properties">Referencing Page Properties</h2>
+
+<p>Our simple plain-English example refers to the page title and page URL. I know what this means, you know what this
+means. Our theoretical parser that will read our test and do something with it doesn’t know what this means.</p>
+
+<p>Even if we do know what the terms ‘page title and page URL’ mean, let’s make things harder to get wrong by also
+referencing these in just one way.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">$page.title</code></li>
+  <li><code class="language-plaintext highlighter-rouge">$page.url</code></li>
+</ul>
+
+<h2 id="updating-our-simple-plain-english-test">Updating Our Simple Plain English Test</h2>
+
+<blockquote>
+  <p>Open up https://google.com in Chrome.</p>
+
+  <ul>
+    <li>
+      <p>Verify that the page is open</p>
+
+      <p>Assertions</p>
+      <ul>
+        <li><strong>$page.title</strong> is "Google"</li>
+        <li><strong>$page.url</strong> is "https://google.com"</li>
+      </ul>
+    </li>
+    <li>
+      <p>Search for "Example"</p>
+
+      <p>Actions</p>
+      <ul>
+        <li>set $".gLFyf.gsfi" to "Example"</li>
+        <li>click $"input[value='Google Search']"</li>
+      </ul>
+
+      <p>Assertions</p>
+      <ul>
+        <li><strong>$page.title</strong> is "Example - Google Search"</li>
+        <li><strong>$page.url</strong> includes "https://www.google.com/search"</li>
+        <li><strong>$page.url</strong> includes "q=example"</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>That is still understandable to us and is now more understandable to a computer.</p>
+
+<h2 id="making-everything-easily-machine-readable">Making Everything Easily Machine-Readable</h2>
+
+<p>Our example test is now looking more and more like something we can feed into a computer to get it to do our work for
+us.</p>
+
+<p>The next article in this series will look at how we can transform the above test into a format that is machine-readable
+whilst still being just as straightforward for us to understand.</p>
+
+                    </div>
+                    <aside>
+                        <div class="toc">
+                            <strong class="heading">Contents</strong>
+                            <ul class="contents">
+  <li class="toc-item"><a href="#precisely-identifying-page-components-using-existing-standards" class="toc-anchor">Precisely Identifying Page Components Using Existing Standards</a></li>
+  <li class="toc-item"><a href="#identifying-the-google-search-field" class="toc-anchor">Identifying The Google Search Field</a></li>
+  <li class="toc-item"><a href="#using-css-selectors-and-xpath-expressions-in-actions-and-assertions" class="toc-anchor">Using CSS Selectors and XPath Expressions in Actions and Assertions</a></li>
+  <li class="toc-item"><a href="#using-css-based-element-references-plain-english-test" class="toc-anchor">Using CSS-based Element References Plain English Test</a></li>
+  <li class="toc-item"><a href="#identifying-attributes" class="toc-anchor">Identifying Attributes</a></li>
+  <li class="toc-item"><a href="#identifying-an-element-within-a-collection" class="toc-anchor">Identifying an Element Within a Collection</a></li>
+  <li class="toc-item"><a href="#identifying-elements-within-elements" class="toc-anchor">Identifying Elements Within Elements</a></li>
+  <li class="toc-item"><a href="#referencing-page-properties" class="toc-anchor">Referencing Page Properties</a></li>
+  <li class="toc-item"><a href="#updating-our-simple-plain-english-test" class="toc-anchor">Updating Our Simple Plain English Test</a></li>
+  <li class="toc-item"><a href="#making-everything-easily-machine-readable" class="toc-anchor">Making Everything Easily Machine-Readable</a></li>
+</ul>
+
+                        </div>
+                    </aside>
+                </div>
+
+            </article>
+        </main>
+        <footer></footer>
+
+    </body>
+</html>

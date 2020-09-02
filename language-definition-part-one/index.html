@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script src="https://kit.fontawesome.com/3fe9462074.js" crossorigin="anonymous"></script>
+
+    <link href="https://blog.smartassert.com/feed.xml" rel="alternate" type="application/rss+xml" title="Smart Assert Blog Feed" />
+    <link rel="stylesheet" href="/assets/css/main.css?1599057143204107228">
+
+    <title>Language Definition Part 1: Grouping Actions and Assertions</title>
+</head>
+    <body class="post page-language-definition-part-one-">
+        <header role="banner" class="guttered-content">
+    <div class="wrapper">
+        <a class="brand h1" href="/">
+            <span class="logo"></span><p>Smart Assert Blog</p>
+        </a>
+        <p>
+            Creating a hassle-free browser test automation service; the
+            story behind SmartAssert.com.
+        </p>
+    </div>
+</header>
+        <main>
+            <article class="content post">
+                <div class="header guttered-content">
+                    <div class="wrapper">
+                        <h1 class="heading">Language Definition Part 1: Grouping Actions and Assertions</h1>
+
+                        
+
+
+
+<div class="meta">
+    <time datetime="2020-06-15">June 15, 2020</time>
+
+    
+        by <a class="author" href="https://github.com/webignition">Jon Cram</a>
+    
+</div>
+
+                    </div>
+                </div>
+
+                <div class="body wrapper">
+                    <div class="content guttered-content">
+                        <h2 id="grouping-actions-and-assertions">Grouping Actions and Assertions</h2>
+
+<p>We previously <a href="/language-definition-part-one/#components-of-a-test">summarised the components of a test</a> and created
+a <a href="/language-definition-part-one/#a-simple-test-in-plain-english">simple test in plain English</a>. Let’s now look at how 
+grouping actions and assertions make things just a little more clear.</p>
+
+<!--more-->
+
+<h2 id="our-previous-plain-english-test">Our Previous Plain English Test</h2>
+
+<p>Towards the end of the previous article in this series we created a plain-English test for opening Google and then
+performing a search.</p>
+
+<blockquote>
+  <p>Open up https://google.com in Chrome.</p>
+
+  <ul>
+    <li>Verify that the page is open
+      <ol>
+        <li>Assert that the page title is “Google”</li>
+        <li>Assert that the page url is “https://google.com”</li>
+      </ol>
+    </li>
+    <li>Search for “Example”
+      <ol>
+        <li>Enter “Example” into the search box</li>
+        <li>Click the “Google Search” button</li>
+        <li>Assert that the page title is “Example - Google Search”</li>
+        <li>Assert that the page url contains “https://www.google.com/search”</li>
+        <li>Assert that the page url contains “q=example”</li>
+      </ol>
+    </li>
+  </ul>
+</blockquote>
+
+<p>This should be clear enough for any competent web tester to run manually in a browser. That doesn’t mean we can’t make
+it better.</p>
+
+<h2 id="actions-come-before-assertions">Actions Come Before Assertions</h2>
+
+<p>Within a given step (such as <em>Search for “Example”</em> above), actions always come before assertions.</p>
+
+<p>The behaviour that we are modelling takes the general form of: <em>do something, then check if it worked</em>. We might not 
+always want to do something first, but if we do we must do it before checking if it worked.</p>
+
+<blockquote>
+  <p>Open up https://google.com in Chrome.</p>
+
+  <ul>
+    <li>
+      <p>Verify that the page is open</p>
+
+      <p>Assertions</p>
+      <ul>
+        <li>Page title is “Google”</li>
+        <li>Page url is “https://google.com”</li>
+      </ul>
+    </li>
+    <li>
+      <p>Search for “Example”</p>
+
+      <p>Actions</p>
+      <ul>
+        <li>Enter “Example” into the search box</li>
+        <li>Click the “Google Search” button</li>
+      </ul>
+
+      <p>Assertions</p>
+      <ul>
+        <li>Page title is “Example - Google Search”</li>
+        <li>Page url contains “https://www.google.com/search”</li>
+        <li>Page url contains “q=example”</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Three main changes here:</p>
+
+<ul>
+  <li>we can’t accidentally try to perform an action between assertions</li>
+  <li>we don’t need to number statements, they are performed in the order in which they are written</li>
+  <li>we don’t need to prefix every single assertion with ‘assert that …’</li>
+</ul>
+
+<p>We’ve made it clear we’re following a <em>do something, then check if it worked</em> approach. We’ve made it clear where
+actions and assertions go within a step. We’ve made our assertion statements less verbose.</p>
+
+<p>These improvements make the test easier for us to follow and understand. As a bonus this is one step closer to making
+the test easier for a computer to parse.</p>
+
+<h2 id="doing-things-one-way-and-one-way-only">Doing Things One Way and One Way Only</h2>
+
+<p>How can you describe the action of entering text into a search box?</p>
+
+<ul>
+  <li>Enter ‘Example’ into the search box</li>
+  <li>Fill the search box with ‘Example’</li>
+  <li>Type ‘Example’ into the search box</li>
+</ul>
+
+<p>The next article in this series will look at picking one verb per type of action to further remove ambiguity.</p>
+
+                    </div>
+                    <aside>
+                        <div class="toc">
+                            <strong class="heading">Contents</strong>
+                            <ul class="contents">
+  <li class="toc-item"><a href="#grouping-actions-and-assertions" class="toc-anchor">Grouping Actions and Assertions</a></li>
+  <li class="toc-item"><a href="#our-previous-plain-english-test" class="toc-anchor">Our Previous Plain English Test</a></li>
+  <li class="toc-item"><a href="#actions-come-before-assertions" class="toc-anchor">Actions Come Before Assertions</a></li>
+  <li class="toc-item"><a href="#doing-things-one-way-and-one-way-only" class="toc-anchor">Doing Things One Way and One Way Only</a></li>
+</ul>
+
+                        </div>
+                    </aside>
+                </div>
+
+            </article>
+        </main>
+        <footer></footer>
+
+    </body>
+</html>

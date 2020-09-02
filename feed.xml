@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Smart Assert Blog</title>
+		<description>Figuring out how to create a hassle-free browser test automation service; the story behind SmartAssert.com.
+</description>
+		<link>https://blog.smartassert.com</link>
+		<atom:link href="https://blog.smartassert.com/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Language Definition Part 3: Precisely Identifying Page Components</title>
+				<description>&lt;h2 id=&quot;precisely-identifying-page-components-using-existing-standards&quot;&gt;Precisely Identifying Page Components Using Existing Standards&lt;/h2&gt;
+
+&lt;p&gt;The unambiguous identification of page elements is a solved problem. As with all good computing problems, two different
+groups of people solved the same problem in two different ways: &lt;a href=&quot;https://en.wikipedia.org/wiki/Cascading_Style_Sheets&quot;&gt;CSS&lt;/a&gt; 
+and &lt;a href=&quot;https://en.wikipedia.org/wiki/XPath&quot;&gt;XPath&lt;/a&gt;. Let’s use both!&lt;/p&gt;
+
+</description>
+				<pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+				<link>https://blog.smartassert.com/language-definition-part-three/</link>
+				<guid isPermaLink="true">https://blog.smartassert.com/language-definition-part-three/</guid>
+			</item>
+		
+			<item>
+				<title>Language Definition Part 2: Doing Things One Way</title>
+				<description>&lt;h2 id=&quot;doing-things-one-way&quot;&gt;Doing Things One Way&lt;/h2&gt;
+
+&lt;p&gt;We previously &lt;a href=&quot;/language-definition-part-one/#actions-come-before-assertions&quot;&gt;separated out actions and assertions&lt;/a&gt;
+in test steps to make our plain-English readable test a little more precise. We will now add more precision to actions 
+and assertions.&lt;/p&gt;
+
+</description>
+				<pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+				<link>https://blog.smartassert.com/language-definition-part-two/</link>
+				<guid isPermaLink="true">https://blog.smartassert.com/language-definition-part-two/</guid>
+			</item>
+		
+			<item>
+				<title>Language Definition Part 1: Grouping Actions and Assertions</title>
+				<description>&lt;h2 id=&quot;grouping-actions-and-assertions&quot;&gt;Grouping Actions and Assertions&lt;/h2&gt;
+
+&lt;p&gt;We previously &lt;a href=&quot;/language-definition-part-one/#components-of-a-test&quot;&gt;summarised the components of a test&lt;/a&gt; and created
+a &lt;a href=&quot;/language-definition-part-one/#a-simple-test-in-plain-english&quot;&gt;simple test in plain English&lt;/a&gt;. Let’s now look at how 
+grouping actions and assertions make things just a little more clear.&lt;/p&gt;
+
+</description>
+				<pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
+				<link>https://blog.smartassert.com/language-definition-part-one/</link>
+				<guid isPermaLink="true">https://blog.smartassert.com/language-definition-part-one/</guid>
+			</item>
+		
+			<item>
+				<title>Language Definition Part 0: Understanding Web Testing</title>
+				<description>&lt;h2 id=&quot;understanding-what-we-are-modelling&quot;&gt;Understanding What We Are Modelling&lt;/h2&gt;
+
+&lt;p&gt;My aim is to define browser automation tests using a plain-English configuration language. Before I can start, we need 
+to look at what web testing is and what terminology is used, or can be used, to describe what goes on.&lt;/p&gt;
+
+</description>
+				<pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+				<link>https://blog.smartassert.com/language-definition-part-zero/</link>
+				<guid isPermaLink="true">https://blog.smartassert.com/language-definition-part-zero/</guid>
+			</item>
+		
+			<item>
+				<title>Browser Automation Test Creation Is Configuration Not Coding</title>
+				<description>&lt;h2 id=&quot;no-programming-needed&quot;&gt;No Programming Needed&lt;/h2&gt;
+
+&lt;p&gt;Given the right automation system you don’t need to write code to define your tests, you instead need to configure 
+the system to test as needed.&lt;/p&gt;
+
+</description>
+				<pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+				<link>https://blog.smartassert.com/configuration-not-coding/</link>
+				<guid isPermaLink="true">https://blog.smartassert.com/configuration-not-coding/</guid>
+			</item>
+		
+	</channel>
+</rss>
